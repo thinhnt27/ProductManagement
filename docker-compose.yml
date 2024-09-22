@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlpreview
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Mana@123
+      - MSSQL_PID=Evaluation
+    ports:
+      - "1434:1433"
+    networks:
+      - my_network
+    volumes:
+      - ./sql-scripts:/var/opt/mssql/scripts
+    command: /opt/mssql/bin/sqlservr
+
+  productmanagementapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: productmanagementapi
+    depends_on:
+      - sqlserver
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=sqlpreview;Database=ProductManagement;User Id=sa;Password=Mana@123;TrustServerCertificate=True;
+    ports:
+      - "8888:8080"
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
