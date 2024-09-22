@@ -70,7 +70,8 @@ namespace SWP.ProductManagement.API.Controllers
                 CategoryName = request.CategoryName
             };
 
-            await _categoryService.InsertCategoryAsync(categoryModel);
+            var rs = await _categoryService.InsertCategoryAsync(categoryModel);
+            categoryModel.CategoryId = rs;
             return CreatedAtAction(nameof(GetCategoryById), new { id = categoryModel.CategoryId }, categoryModel);
         }
 

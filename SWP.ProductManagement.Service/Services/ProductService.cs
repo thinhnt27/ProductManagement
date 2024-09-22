@@ -61,7 +61,7 @@ namespace SWP.ProductManagement.Service.Services
             return true;
         }
 
-        public async Task InsertProductAsync(ProductModel productModel)
+        public async Task<int> InsertProductAsync(ProductModel productModel)
         {
             var productEntity = new Product
             {
@@ -73,6 +73,7 @@ namespace SWP.ProductManagement.Service.Services
 
             await _unitOfWork.Products.InsertAsync(productEntity);
             await _unitOfWork.SaveAsync();
+            return productEntity.ProductId;
         }
 
         public async Task<bool> DeleteProductAsync(int id)
