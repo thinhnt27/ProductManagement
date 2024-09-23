@@ -33,7 +33,7 @@ namespace SWP.ProductManagement.API.Controllers
             return Ok(response);
         }
 
-        [HttpGet("product/{id}")]
+        [HttpGet("products/{id}")]
         public async Task<ActionResult<ProductResponseModel>> GetProductById(int id)
         {
             var product = await _productService.GetProductByIdAsync(id);
@@ -50,7 +50,7 @@ namespace SWP.ProductManagement.API.Controllers
             return Ok(response);
         }
 
-        [HttpPost("product")]
+        [HttpPost("products")]
         public async Task<ActionResult> CreateProduct(ProductRequestModel request)
         {
             var productModel = new ProductModel
@@ -66,7 +66,7 @@ namespace SWP.ProductManagement.API.Controllers
             return CreatedAtAction(nameof(GetProductById), new { id = productModel.ProductId }, productModel);
         }
 
-        [HttpPut("product/{id}")]
+        [HttpPut("products/{id}")]
         public async Task<IActionResult> UpdateProduct(int id, ProductRequestModel request)
         {
             var productModel = new ProductModel
@@ -83,7 +83,7 @@ namespace SWP.ProductManagement.API.Controllers
             return NoContent();
         }
 
-        [HttpDelete("product/{id}")]
+        [HttpDelete("products/{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var success = await _productService.DeleteProductAsync(id);

@@ -18,7 +18,7 @@ services:
 
   productmanagementapi:
     build:
-      context: .
+      context: ./SWP.ProductManagement.API
       dockerfile: Dockerfile
     container_name: productmanagementapi
     depends_on:
@@ -29,7 +29,7 @@ services:
       - "8888:8080"
     networks:
       - my_network
-    
+
 networks:
   my_network:
     driver: bridge
