@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SWP.ProductManagement.Repository.Models;
 
@@ -10,9 +11,11 @@ using SWP.ProductManagement.Repository.Models;
 namespace SWP.ProductManagement.Repository.Migrations
 {
     [DbContext(typeof(ProductManagementContext))]
-    partial class ProductManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20240923073946_InitDB")]
+    partial class InitDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

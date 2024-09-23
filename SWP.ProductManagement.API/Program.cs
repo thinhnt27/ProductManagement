@@ -44,7 +44,11 @@ namespace SWP.ProductManagement.API
 
 
             app.MapControllers();
-
+            using (var scope = app.Services.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<ProductManagementContext>();
+                db.Database.Migrate();
+            }
             app.Run();
         }
     }
