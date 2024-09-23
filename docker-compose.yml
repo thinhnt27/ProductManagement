@@ -29,6 +29,9 @@ services:
       - "8888:8080"
     networks:
       - my_network
+    # Thực hiện lệnh ef database update trước khi chạy ứng dụng
+    command: >
+      /bin/bash -c "dotnet ef database update --project SWP.ProductManagement.Repository --startup-project SWP.ProductManagement.API && dotnet SWP.ProductManagement.API.dll"
 
 networks:
   my_network:

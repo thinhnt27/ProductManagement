@@ -21,7 +21,8 @@ namespace SWP.ProductManagement.API
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
             builder.Services.AddDbContext<ProductManagementContext>(options =>
-            options.UseSqlServer(connectionString));
+                options.UseSqlServer(connectionString,
+                    sqlOptions => sqlOptions.MigrationsAssembly("SWP.ProductManagement.Repository")));
 
             builder.Services.AddScoped<ProductService>();
             builder.Services.AddScoped<CategoryService>();
