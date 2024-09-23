@@ -30,6 +30,18 @@ services:
     networks:
       - my_network
 
+  demo-react:
+    build:
+      context: ./demo-react
+      dockerfile: Dockerfile
+    container_name: demo-react
+    environment:
+      - VITE_API_URL=http://128.199.177.223:8888
+    ports:
+      - "3000:80"
+    networks:
+      - my_network
+    
 networks:
   my_network:
     driver: bridge
