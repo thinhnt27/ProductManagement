@@ -39,7 +39,7 @@ namespace SWP.ProductManagement.API.Controllers
             return Ok(response);
         }
 
-        [HttpGet("category/{id}")]
+        [HttpGet("categories/{id}")]
         public async Task<ActionResult<CategoryResponseModel>> GetCategoryById(int id)
         {
             var category = await _categoryService.GetCategoryByIdAsync(id);
@@ -62,7 +62,7 @@ namespace SWP.ProductManagement.API.Controllers
             return Ok(response);
         }
 
-        [HttpPost("category")]
+        [HttpPost("categories")]
         public async Task<ActionResult> CreateCategory(CategoryRequestModel request)
         {
             var categoryModel = new CategoryModel
@@ -75,7 +75,7 @@ namespace SWP.ProductManagement.API.Controllers
             return CreatedAtAction(nameof(GetCategoryById), new { id = categoryModel.CategoryId }, categoryModel);
         }
 
-        [HttpPut("category/{id}")]
+        [HttpPut("categories/{id}")]
         public async Task<IActionResult> UpdateCategory(int id, CategoryRequestModel request)
         {
             var categoryModel = new CategoryModel
@@ -89,7 +89,7 @@ namespace SWP.ProductManagement.API.Controllers
             return NoContent();
         }
 
-        [HttpDelete("category/{id}")]
+        [HttpDelete("categories/{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             var success = await _categoryService.DeleteCategoryAsync(id);

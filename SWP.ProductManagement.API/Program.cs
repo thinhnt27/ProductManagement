@@ -23,6 +23,9 @@ namespace SWP.ProductManagement.API
             builder.Services.AddDbContext<ProductManagementContext>(options =>
                 options.UseSqlServer(connectionString,
                     sqlOptions => sqlOptions.MigrationsAssembly("SWP.ProductManagement.Repository")));
+            builder.Services.AddCors(option =>
+                option.AddPolicy("CORS", builder =>
+                    builder.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin()));
 
             builder.Services.AddScoped<ProductService>();
             builder.Services.AddScoped<CategoryService>();
@@ -33,9 +36,12 @@ namespace SWP.ProductManagement.API
             // Configure the HTTP request pipeline.
             //if (app.Environment.IsDevelopment())
             //{
-           
+
             //}
+            app.UseCors("CORS");
+
             app.UseSwagger();
+
             app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
