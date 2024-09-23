@@ -11,7 +11,7 @@ import ManageProduct from './pages/product'
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/dashboard",
+      path: "",
       element: <Dashboard />,
       children: [
         {
