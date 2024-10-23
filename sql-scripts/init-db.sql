@@ -10,9 +10,9 @@ USE ProductManagement;
 GO
 
 -- Create Category table
-IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Category')
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Categories')
 BEGIN
-    CREATE TABLE Category (
+    CREATE TABLE Categories (
         CategoryId INT PRIMARY KEY IDENTITY(1,1),
         CategoryName NVARCHAR(100) NOT NULL
     );
@@ -20,25 +20,25 @@ END
 GO
 
 -- Create Product table
-IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Product')
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Products')
 BEGIN
-    CREATE TABLE Product (
+    CREATE TABLE Products (
         ProductId INT PRIMARY KEY IDENTITY(1,1),
         ProductName NVARCHAR(100) NOT NULL,
         CategoryId INT,
         UnitPrice DECIMAL(18, 2),
-        FOREIGN KEY (CategoryId) REFERENCES Category(CategoryId)
+        FOREIGN KEY (CategoryId) REFERENCES Categories(CategoryId)
     );
 END
 GO
 
 -- Insert categories
-INSERT INTO Category (CategoryName) VALUES ('Beverages'), ('Condiments'), ('Confections'), ('Dairy Products'),
+INSERT INTO Categories (CategoryName) VALUES ('Beverages'), ('Condiments'), ('Confections'), ('Dairy Products'),
                                             ('Grains/Cereals'), ('Meat/Poultry'), ('Produce'), ('Seafood');
 GO
 
 -- Insert products
-INSERT INTO Product (ProductName, CategoryId, UnitPrice) VALUES
+INSERT INTO Products (ProductName, CategoryId, UnitPrice) VALUES
 ('Chai', 1, 18.00),
 ('Chang', 1, 19.00),
 ('Aniseed Syrup', 2, 10.00),
